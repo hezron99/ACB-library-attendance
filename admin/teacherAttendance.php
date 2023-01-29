@@ -1,7 +1,7 @@
 <?php
 $title = "Instructor Attendance";
-require_once '/xampp/htdocs/crud_oop/view/header.php';
-require_once '/xampp/htdocs/crud_oop/view/authentication.php';
+require_once '/xampp/htdocs/library-attendance/view/header.php';
+require_once '/xampp/htdocs/library-attendance/view/authentication.php';
 ?>
 
 

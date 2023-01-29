@@ -1,17 +1,48 @@
 <?php
     $title = "Home Admin";
     
-    require_once '/xampp/htdocs/crud_oop/view/header.php';
-    require_once '/xampp/htdocs/crud_oop/view/authentication.php';
-   
+    require_once '/xampp/htdocs/library-attendance/view/header.php';
+    require_once '/xampp/htdocs/library-attendance/view/authentication.php';
+    require_once "/xampp/htdocs/library-attendance/class/model.php";
+    require_once "/xampp/htdocs/library-attendance/config/database.php";
     
 
     require_once "../class/model.php";
     require_once "../class/adminDatabase.php";
     require_once "../class/adminModel.php";
     require_once "../class/UserModel.php";
+   
+    if(isset($_POST['submitSearch'])){
+        $key = $_POST['key'];
 
-    // students attendance count 
+        $rowdata = $obj->search($key);
+        
+        $output = $rowdata->fetchALL();
+        $row = $rowdata->rowCount();
+    }
+
+
+    $per_page = 15;
+    $page = 1;
+    if(isset($_GET['page'])){
+      $page = (int)$_GET['page'];
+    
+    }else{
+      $page = 1;
+    }
+    
+    $start = ($page - 1) * $per_page;
+    if (isset($_POST['display'])) {
+    
+    }
+    $query = $obj->pagination($start,$per_page);
+    
+    
+    ?>
+
+    
+<?php
+// students attendance count 
     $numLogins = $object->recordLoginCount();
     $count = $numLogins->rowCount();
 
@@ -40,7 +71,7 @@
                                 <div class="offcanvas offcanvas-start border border-0 shadow-lg" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" style="background-color:white;width:260px; margin-top:70px;border-top-right-radius:20px">
                                     <div class="offcanvas-header">
                                         <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style="margin-left:60px;"></h5>
-                                        <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+                                        
                                     </div>
                                     <div class="offcanvas-body text-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -51,7 +82,7 @@
                                                 <button class="btn btn-secondary dropdown-toggle mt-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Activity
                                                 </button>
-                                                <ul class="dropdown-menu dropdown-menu-info" style="margin-left: 90px;">
+                                                <ul class="dropdown-menu dropdown-menu-info mx-3 text-center" >
                                                     <li><a class="dropdown-item" href="#">Another action</a></li>
                                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                                     <li><hr class="dropdown-divider"></li>
@@ -124,6 +155,8 @@
                         </div> 
                     </nav>
                 </div>
+                <div id="success-message"></div>
+
     <div class="container">
         <div class="container mx-auto text-center"style="position:relative; bottom:50px;">
             <div class="row mx-5">
@@ -134,7 +167,7 @@
                             <p class="card-text display-6" style="font-size: 1.4"><?php echo strval($count);?></p>
                             <button class="btn btn-outline-primary shadow-sm" onclick="sample1()" type="button" data-toggle="modal" data-target="#centerModal1">
                                 View more
-                                <!---<a href="home.php" class="text-decoration-none text-light">view more</a> --->
+                              
                             </button>
                         </div>
                     </div>
@@ -146,7 +179,7 @@
                             <p class="card-text display-6" style="font-size: 1.4">13</p>
                             <button class="btn btn-outline-primary shadow-sm" onclick="sample2()" type="button" data-toggle="modal" data-target="#centerModal2">
                                 View more
-                                <!--<a href="home.php" class="text-decoration-none text-light">view more</a> --->
+                                
                             </button>
                         </div>
                     </div>
@@ -163,7 +196,7 @@
                             <p class="card-text display-6" style="font-size: 1.4"><?php echo strval($count1);?></p>
                             <button class="btn btn-outline-primary shadow-sm" onclick="sample()" type="button" data-toggle="modal" data-target="#centerModal3">
                                 View more
-                                        <!---<a href ="/adminTeam/admin_team.php" class="text-decoration-none text-light"> View more</a>-->
+                                        
                             </button>
                         </div>
                     </div>  
@@ -173,10 +206,112 @@
     </div>
     <div class="container mb-5">
         <div class="container text-center" >
-            <div class="card text-center shadow rounded border-0">
+            <div class="card text-center shadow rounded-5 border-0">
                 <div class="card-body">
-                    <button type="button" class="btn btn-outline-primary font-monospace shadow-lg" onclick="modalInsert()" data-toggle="modal" data-target="#exampleModal" style="margin-left:1100px;">ADD User</button>
+                    
+                    <div class="row mx-auto mb-3" style="padding: 20px;">
+                        <form  class = "w-25 d-flex" role = "search" method="POST" action="index.php">
+                            <input  class="form-control me-2" aria-label="Search" type="text" placeholder="Search" key="search" name="key">
+                            <input class="btn btn-warning" type="submit" value="submit" name="submitSearch">
+
+                        </form>
+                        <button type="button" class="btn btn-primary  font-monospace shadow-sm" onclick="modalInsert()" data-toggle="modal" data-target="#exampleModal" style="width: 100px;">ADD User</button>
+
+                    </div>
+                    
+                    
                         <div  class="table-responsive-xl" id="displaytabledata"></div>
+                   
+                                <table class="table rounded border-0">
+                                    <thead class="table">
+                                    <tr class="font-monospace" style="font-size: 14px;">
+                                        <th scope="col">#</th>
+                                        <th scope="col">USN</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Course</th>
+                                        <th scope="col">Year Level</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">UPDATE</th>
+                                        <th scope="col">DELETE</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $row = 0;
+                                            if(isset($output) && !empty($output)) {
+                                                $row = count($output);
+                                            }
+                                            if(($row) != 0){
+                                                
+                                                foreach($output as $searchrow){ 
+                                                    echo "<tr class='bg-warning'>
+                                                                <td>".$searchrow['student_id']."</td>
+                                                                <td>".$searchrow['USN']."</td>
+                                                                <td>".$searchrow['lastname']."</td>
+                                                                <td>".$searchrow['firstname']."</td>
+                                                                <td>".$searchrow['course']."</td>
+                                                                <td>".$searchrow['year_level']."</td>
+                                                                <td>".$searchrow['at_status']."</td>
+                                                                <td><button class='btn btn-danger font-monospace' onclick='GetDetails(".$searchrow['student_id'].")'>UPDATE</button></td>
+                                                                <td><button class='btn btn-dark font-monospace' onclick='deleteOption(".$searchrow['student_id'].")'>DELETE</button></td>
+                                                        </tr";
+                                                }
+                                            }else{
+                                                //echo "data not found";
+                                                //echo var_dump($row);
+                                            }
+                                            
+                                        ?>
+                                        
+                                        <?php 
+                                        $countRow = $query->fetchColumn();
+                                        
+                                        
+                                        $number = 1;
+                                        while($data = $query->fetch(PDO::FETCH_ASSOC)){?>
+                                            <?php $data['student_id']?>
+                                            <tr>
+                                                <td><?php echo $number?></td>
+                                                <td><?php echo $data['USN']?></td>
+                                                <td><?php echo $data['lastname']?></td>
+                                                <td><?php echo $data['firstname']?></td>
+                                                <td><?php echo $data['course']?></td>
+                                                <td><?php echo $data['year_level']?></td>
+                                                <td><?php echo $data['at_status']?></td>
+                                                <td><button class="btn btn-danger font-monospace" onclick="GetDetails(<?php echo $data['student_id'];?>)">UPDATE</button></td>
+                                                <td><button class="btn btn-dark font-monospace" onclick="deleteOption(<?php echo $data['student_id'];?>)">DELETE</button></td>
+                                                    
+                                            </tr>
+                                            
+                                        <?php $number++; }?>
+                                    </tbody>
+                                </table>
+                                <?php 
+                                $total_pages = ceil($countRow / $per_page);
+                                ?>
+                                <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item <?php if ($page == 1) echo 'disabled'; ?>">
+                                    <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    </li>
+                                    <?php for($i = 1; $i<=$total_pages; $i++): ?>
+                                    <li class="page-item <?php if ($i == $page) echo 'active'; ?>">
+                                        <a class="page-link" href="?page=<?php echo  $i;?>"><?php echo $i; ?></a>
+                                    </li>
+                                    <?php endfor;?>
+                                    <li class="page-item <?php if ($page == $total_pages) echo 'active'; ?>">
+                                    <a class="page-link" href="?page=<?php echo $page + 1;?>" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                                </nav>
+                                	
                 </div>
             </div>
         </div>
@@ -382,7 +517,7 @@
             <br>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>            
  <script>
-    
+// MODAL JAVASCRIPT
    function sample(){
     $(document).ready(function() {
     $('#centerModal3').modal('show');
@@ -406,30 +541,6 @@
         $('#exampleModal').modal('show');
     });
    }
-    //DISPLAY USER DATA AND MANAGEMENT
-    $(document).ready(function(){
-        displaydata();
-        
-    });
-
-    function displaydata(){
-        var displaydata = "true";
-    
-    $.ajax({
-        type: 'POST',
-        url: 'display_user.php',
-        data: {
-            display:displaydata,
-        },
-        success:function(data,status){
-            $('#displaytabledata').html(data);
-        }
-    });
-    }
-
-     // Admin display data
-
-    // SELECT ELEMENT DATA
 
     //INSERT user data 
     function insertUser(){
@@ -456,9 +567,9 @@
         success:function(data,status) {
 
             //console.log(data);
-            displaydata();
-            $('#exampleModal').modal('hide');
-           
+            
+            $('#exampleModal').modal('hide');  
+            window.location.reload();
         }
     });
     
@@ -486,10 +597,11 @@
             deleteUserRequest:deleteUserRequest
             },
            function(data,status){
-            displaydata();
+             //displaydata();
             
             //console.log(data);
             $("#staticBackdrop").modal('hide');
+            window.location.reload();
            });
      }
    // GET DETAILS
@@ -532,8 +644,8 @@
         hiddendata:hiddendata
    },
     function(data,status){
-   
-    displaydata();
+        //console.log(data);
+        window.location.reload();
    
     });
     $("#updateModal").modal('hide');

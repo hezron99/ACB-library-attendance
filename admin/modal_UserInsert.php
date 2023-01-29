@@ -9,7 +9,11 @@ if (isset($_POST['usn']) && isset($_POST['lname']) && isset($_POST['fname'])
 
     $success = $obj->insert($usn,$lname,$fname,$course,$year,$status);
     
-    
+        
+    if($success){
+        header("Location: ../index.php?error=Success");
+        exit();
+    }
 
 }
 ?>

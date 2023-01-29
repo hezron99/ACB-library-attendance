@@ -16,7 +16,7 @@ try {
     echo "ERROR database connection failed. " . $e->getMessage();
 
 }
-require_once '/xampp/htdocs/crud_oop/class/model.php';
+require_once '/xampp/htdocs/library-attendance/class/model.php';
 $obj = new Attendance($conn);
 
 

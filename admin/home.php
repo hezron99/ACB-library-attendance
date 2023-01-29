@@ -1,9 +1,9 @@
 <?php
 $title = "Attendance";
-require_once '/xampp/htdocs/crud_oop/view/header.php';
-require_once '/xampp/htdocs/crud_oop/view/authentication.php';
-require_once '/xampp/htdocs/crud_oop/class/adminDatabase.php';
-require_once '/xampp/htdocs/crud_oop/class/UserModel.php';
+require_once '/xampp/htdocs/library-attendance/view/header.php';
+require_once '/xampp/htdocs/library-attendance/view/authentication.php';
+require_once '/xampp/htdocs/library-attendance/class/adminDatabase.php';
+require_once '/xampp/htdocs/library-attendance/class/UserModel.php';
 
 
 
@@ -21,7 +21,7 @@ $r = $object->getAllLoginDetails();
         <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position:relative; bottom:120px;left:20px">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <span class="display-5 " style="font-weight: bolder;color:white;position:relative;bottom:105px;margin-left:30px;">ADMIN</span>
+        <span class="display-5 " style="font-weight: bolder;color:white;position:relative;bottom:105px;margin-left:30px;"><a href="index.php" class="text-decoration-none text-light">ADMIN</a></span>
     </div> 
     <figure class="text-center"style="position:relative;">
         <blockquote class="blockquote"></blockquote>
@@ -160,7 +160,16 @@ $r = $object->getAllLoginDetails();
     
     </ul>
     <div class="card text-center shadow-lg py-5 px-5">
-        <div class="card-body">   
+
+        <div class="card-body"> 
+            <div class="well-sm ">
+                <div class="btn-group mb-4">	
+                    <form action="export_studentdata.php" method="POST" style="margin-right: 1000px;padding:10px;">					
+                            <button  type="submit" id="exportdata" name='export_studentdata' value="Export" class="btn btn-info shadow-sm">Download</button>
+                    </form>
+                </div>
+            </div>	  
+                
             <table class="table rounded">
                 <thead class="table border-0 ">
                 <tr class="font-monospace" style="font-size: 14px;">
@@ -217,47 +226,6 @@ $r = $object->getAllLoginDetails();
   </div>
 </div>
 
-
-
-
-<!---
-  <div class="row">
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-        
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        
-        </div>
-    </div>
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-    
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        
-        </div>
-    </div>
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-  
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-  
-        </div>
-        <br />
-    </div>
-</div>
---->
 
 
 <?php 

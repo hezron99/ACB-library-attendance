@@ -16,6 +16,7 @@ class UserController extends UserModel{
             
            header("Location:../login.php?error=INVALID_YOUMUSTFILLUPALL");
            exit();
+        
         }
        
        $this->get_attendee($this->usn,$this->option,$this->others);
@@ -29,7 +30,6 @@ class UserController extends UserModel{
             $result = false;
         }else{
             $result = true;
-
         }
         return $result;
         

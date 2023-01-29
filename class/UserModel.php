@@ -6,7 +6,7 @@ class UserModel extends Db{
   public function get_attendee($usn,$option,$others) {
         $stmt = $this->connect()->prepare("SELECT * FROM student_info WHERE USN = ?");
         if (!$stmt->execute(array($usn))) {
-            $stmt = null;
+           $stmt = null;
             header("Location:../login.php?error=STMTFAILED");
             exit();
         }
@@ -16,7 +16,6 @@ class UserModel extends Db{
             exit();
         }
         $user = $stmt->fetchALL(PDO::FETCH_ASSOC);
-
         session_start();
 
         $id = $_SESSION['id'] = $user[0]['student_id'];
@@ -53,13 +52,12 @@ class UserModel extends Db{
   public function getAllLoginDetails() {
     $sql = "SELECT student_info.USN, student_info.lastname, student_info.firstname, at_attendance.at_time,at_attendance.option_name,at_attendance.others
             FROM student_info 
-            INNER JOIN at_attendance ON student_info.student_id=at_attendance.student_id
-          
-           ";
+            INNER JOIN at_attendance ON student_info.student_id=at_attendance.student_id WHERE at_attendance.at_time > NOW() - INTERVAL 24 HOUR  ORDER BY at_attendance.at_time DESC";
 
     $stmt = $this->connect()->prepare($sql);
     $stmt->execute();
     return $stmt;
+
   }
 
 
@@ -72,6 +70,13 @@ class UserModel extends Db{
       return $stmt;
       
 
+
+  }
+  public function recordDeleteCount() {
+    $sql = "DELETE  FROM at_attendance WHERE at_time < CURDATE()";
+    $stmt = $this->connect()->prepare($sql);
+    $stmt->execute();
+    return $stmt;
 
   }
 

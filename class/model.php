@@ -1,6 +1,6 @@
 <?php
-require_once '/xampp/htdocs/crud_oop/config/database.php';
-class Attendance{
+require_once '/xampp/htdocs/library-attendance/config/database.php';
+class Attendance {
     
     private $dbname;
     
@@ -9,16 +9,16 @@ class Attendance{
         $this->dbname = $db;
        
     }
-    //sample fetch queries
-   
+ 
+   //////////////////////////// THIS IS MODEL CLASS ALL DATA INPUT HERE IT INCLUDES /////////////////
+   /////////////////////////////////////////////STUDENT DATA AND ADMIN DATA /////////////////////////////////
 
-    // INSERT portion of crud operations in admin
+    // INSERT operation for the student record information
     public function insert($usn,$lname,$fname,$course,$year,$status){
         
         $stmt = "INSERT INTO student_info (USN,lastname,firstname,course,year_level,at_status) VALUES (:usn,:lname,:fname,:course,:year_level,:Student_status)";
         
         $query = $this->dbname->prepare($stmt);
-       // $hashpass = password_hash($pass,PASSWORD_DEFAULT);
         $query->bindParam(':usn',$usn);
         $query->bindParam(':lname',$lname);
         $query->bindParam(':fname',$fname);
@@ -27,12 +27,13 @@ class Attendance{
         $query->bindParam(':Student_status',$status);
 
         $query->execute();
-
+        
         $stmt = null;
+        
         
     
     }
-    // getting the details of the user
+    // getting the details of the STUDENT
     public function getDetails($id){
         $stmt = "SELECT * FROM student_info WHERE student_id =:updateid";
         $query = $this->dbname->prepare($stmt);
@@ -43,7 +44,7 @@ class Attendance{
         
 
     }
-    //  fetch query :fetching all the data and display them in table format
+    
     public function getAll(){
         
         $stmt = "SELECT * FROM student_info";
@@ -52,8 +53,8 @@ class Attendance{
         return $query;
     }
     // UPDATE portion of crud operations in admin
-    public function update_users($id, $usn, $lname, $fname, $course, $year, $status,$time){
-        $stmt = $this->dbname->prepare("UPDATE student_info SET USN = :updateUsn, lastname= :updateLname,firstname= :updateFname,course = :updateoption1,year_level = :updateoption2,
+    public function update_users($id, $usn, $lname, $fname, $course, $year, $status){
+        $stmt = $this->dbname->prepare("UPDATE student_info SET USN = :updateUsn, lastname= :updateLname, firstname= :updateFname, course = :updateoption1, year_level = :updateoption2,
         at_status = :updateoption3 WHERE student_id = :hiddendata");
 
         $stmt->bindParam(':updateUsn', $usn, PDO::PARAM_STR);
@@ -62,7 +63,7 @@ class Attendance{
         $stmt->bindParam(':updateoption1', $course, PDO::PARAM_STR);
         $stmt->bindParam(':updateoption2', $year, PDO::PARAM_STR);
         $stmt->bindParam(':updateoption3', $status, PDO::PARAM_STR);
-        $stmt->bindParam(':date_time', $time, PDO::PARAM_STR);
+        //$stmt->bindParam(':date_time', $time, PDO::PARAM_STR);
         $stmt->bindParam(':hiddendata', $id, PDO::PARAM_INT);
 
         $stmt->execute();
@@ -90,42 +91,36 @@ class Attendance{
     }
     
     // admin team members crud operations
-    public function get_admin_team_members(){
-        $stmt = "SELECT * FROM authorized";
-        
-        $query = $this->dbname->prepare($stmt);
-        $query->execute();
-        return $query;
-        
-    }
+ 
+   
     // admin team members INSERT crud operations
-    public function insert_admin($fname, $address, $position,$username){
-        $stmt ="INSERT INTO authorized (fullname,address_at,position,user_name) VALUES (:fname,:address_at,:position,:username)";
+   
+   
+    //  fetch query :fetching all the data and display them in table format AND also pagination
+    public function pagination($start,$per_page){
+        $query = "SELECT COUNT(*) FROM student_info";
+        $stmt = $this->dbname->prepare($query);
+        $stmt->execute();
+        
 
-        $query = $this->dbname->prepare($stmt);
-        $query->bindParam(':fname',$fname,PDO::PARAM_STR);
-        $query->bindParam(':address',$address,PDO::PARAM_STR);
-        $query->bindParam(':position',$position,PDO::PARAM_STR);
-        $query->bindParam(':username',$username,PDO::PARAM_STR);
-        //$query->bindParam(':pass',$pass,PDO::PARAM_STR);
-        //query->bindParam(':rpass',$rpass,PDO::PARAM_STR);
-        //$query->bindParam(':avatar',$avatar);
-        $query->execute();
-        return true;
+        $query = "SELECT * FROM student_info LIMIT :start, :per_page";
+        $stmt = $this->dbname->prepare($query);
+        $stmt->bindValue(':start', $start, PDO::PARAM_INT);
+        $stmt->bindValue(':per_page', $per_page, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        return $stmt;
+    }
+    public function search($search){
+        $sql = "SELECT * FROM student_info WHERE lastname LIKE :search OR firstname LIKE :search ORDER BY lastname";
+        $stmt = $this->dbname->prepare($sql);
+        $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt;
 
     }
  
-    /*/ COUNT THE NUMBERS THAT LOG IN
-        public function checkUser(){
-            $sql = "SELECT count(*) FROM authorized";
-            $stmt = $this->dbname->prepare($sql);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-
-           
-            }
-    */
+   
 }
         
 

@@ -1,11 +1,13 @@
 <?php
 $title = "Admin Attendance";
-require_once '/xampp/htdocs/crud_oop/view/header.php';
-require_once '/xampp/htdocs/crud_oop/view/authentication.php';
-require_once '/xampp/htdocs/crud_oop/class/adminDatabase.php';
-require_once '/xampp/htdocs/crud_oop/class/adminModel.php';
-
+require_once '/xampp/htdocs/library-attendance/view/header.php';
+require_once '/xampp/htdocs/library-attendance/view/authentication.php';
+require_once '/xampp/htdocs/library-attendance/class/adminDatabase.php';
+require_once '/xampp/htdocs/library-attendance/class/adminModel.php';
+$date = date('d');
 $r = $admin->getAdminAttendees();
+
+
 ?>
 
 
@@ -146,6 +148,13 @@ $r = $admin->getAdminAttendees();
     </ul>
     <div class="card text-center shadow-lg py-5 px-5">
       <div class="card-body">
+            <div class="well-sm ">
+                <div class="btn-group mb-4">	
+                    <form action="exportdata.php" method="POST" style="margin-right: 1000px;padding:10px;">					
+                        <button  type="submit" id="export_data" name='export_data' value="Export to excel" class="btn btn-info shadow-sm">Download</button>
+                    </form>
+                </div>
+            </div>	
         
         <table class="table bg-body rounded border border-0">
         <caption>List of users</caption>
@@ -155,24 +164,22 @@ $r = $admin->getAdminAttendees();
             <th scope="col">Full Name</th>
             <th scope="col">Positon</th>
             <th scope="col">Time IN</th>
-       
           </tr>
         </thead>
         <tbody>
-            <?php 
+            <?php
             $number =1;
             while($data = $r->fetch(PDO::FETCH_ASSOC)){ ?>
-                
                 <tr>
                     <td class="py-3 px-3"><?php echo $number; ?></td>
                     <td><?php echo $data['fullname'] ?></td>
                     <td><?php echo $data['position'] ?></td>
                     <td><?php echo $data['admin_time_in']?></td>
-                </tr>
-                    
-               
+                </tr>    
             <?php $number++; 
-            }?>
+            
+            }
+            ?>
         </tbody>
       </table>
       <nav aria-label="Page navigation example">

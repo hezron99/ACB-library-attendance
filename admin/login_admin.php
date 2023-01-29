@@ -1,7 +1,7 @@
 <?php
    $title = "Admin";
    require_once "../view/header.php";
-   require_once '/xampp/htdocs/crud_oop/view/validation.php';
+   require_once '/xampp/htdocs/library-attendance/view/validation.php';
 ?>
 <nav class="navbar" style="background-color: skyblue; height:300px">
         
@@ -24,6 +24,20 @@
 </nav>    
     <div class="container shadow-lg" style="width: 500px;background-color:azure;position:relative; bottom:100px;border-radius:30px;padding:30px;">
       <h1 class="font-monospace text-center">Login Admin</h1>
+      <?php $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+      if (strpos($url,"error=INVALID_YOUMUSTFILLUPALL")==true){
+            echo "<div class='alert alert-danger tex-center' role='alert'>
+            <strong>Please fill in all fields!.</strong>
+            </div>";
+      }elseif (strpos($url,"error=USER_NOT_FOUND")==true){
+            echo "<div class='alert alert-danger tex-center' role='alert'>
+            <strong>User Not Found!.</strong>
+            </div>";
+      }
+
+
+       ?>
             <form method="POST" action="../process/login_process.php">
                 <!-- Email input -->
                 <div class="form-outline mb-4">

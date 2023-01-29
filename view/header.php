@@ -1,14 +1,14 @@
 <?php 
       session_start();
 
-      $page = $_SERVER['PHP_SELF'];
-      $sec = "20";
+      //$page = $_SERVER['PHP_SELF'];
+      //$sec = "20";
 ?>
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
+    <meta http-equiv="refresh" content="<?php //echo $sec?>;URL='<?php //echo $page?>'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     

@@ -11,12 +11,12 @@ if (isset($_POST['updateid'])) {
     // Retrieve the user data using the updateid parameter
     $updateid = $_POST['updateid'];
 
-    $result = $obj->getDetails($updateid);
+    $result1 = $obj->getDetails($updateid);
     
 
     
 
-    if ($result) {
+    if ($result1) {
         // Return the user data as a JSON string
         $response = array();
         $response['status'] = 200;
@@ -39,8 +39,8 @@ if (isset($_POST['updateid'])) {
     $course = $_POST['updateoption1'];
     $year = $_POST['updateoption2'];
     $status = $_POST['updateoption3'];
-    $time = date('Y-m-d H:i:s');
-    $result = $obj->update_Users($hiddendata, $usn, $lname, $fname, $course, $year, $status,$time);
+    //$time = date('Y-m-d H:i:s');
+    $result = $obj->update_Users($hiddendata, $usn, $lname, $fname, $course, $year, $status);
 
     if ($result) {
         // Return a success message as a JSON string
