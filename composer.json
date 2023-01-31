@@ -15,6 +15,8 @@
         "php artisan clear-compiled",
         "php artisan optimize"
       ]
+    
+
     },
     "config": {
       "preferred-install": "dist"
@@ -22,5 +24,6 @@
     "require-dev": {
       "heroku/heroku-buildpack-php": "*"
     }
+    
   }
   
