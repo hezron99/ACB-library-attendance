@@ -7,3 +7,5 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 
 RewriteRule ^(.*)$ $1.php [NC,L]
 
+Order allow,deny
+Allow from all
