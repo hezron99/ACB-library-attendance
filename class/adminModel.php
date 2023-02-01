@@ -19,7 +19,7 @@ class AdminModel extends Db {
 
                 if($checkpass == false){
                     $stmt= null;
-                    header("Location:../admin/login_admin.php?error=PasswordDon't match");
+                    header("Location:../admin/login_admin.php?error=PASSWORD_DONT_MATCH");
                     exit();
                 }elseif($checkpass == true){
                     $stmt = $this->connect()->prepare("SELECT * FROM authorized WHERE user_name = ? OR user_pass = ?;");

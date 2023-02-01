@@ -30,11 +30,16 @@
             echo "<div class='alert alert-danger tex-center' role='alert'>
             <strong>Please fill in all fields!.</strong>
             </div>";
-      }elseif (strpos($url,"error=USER_NOT_FOUND")==true){
+        }elseif (strpos($url,"error=PASSWORD_DONT_MATCH")==true){
+            echo "<div class='alert alert-danger tex-center' role='alert'>
+            <strong>Wrong Password!.</strong>
+            </div>";
+      
+        }elseif (strpos($url,"error=USER_NOT_FOUND")==true){
             echo "<div class='alert alert-danger tex-center' role='alert'>
             <strong>User Not Found!.</strong>
             </div>";
-      }
+        }
 
 
        ?>
