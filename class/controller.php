@@ -7,16 +7,16 @@ class User extends AdminModel{
     private $username;
     private $pass;
     private $rpass;
-    private $avatar;
+  
 
-    public function __construct($fname, $address, $position, $username, $pass, $rpass, $avatar){
+    public function __construct($fname, $address, $position, $username, $pass, $rpass){
         $this->fname = $fname; 
         $this->address = $address;
         $this->position = $position;
         $this->username = $username;
         $this->pass = $pass;
         $this->rpass = $rpass;
-        $this->avatar = $avatar;
+       
     }
 
     public function datacontroller(){
@@ -31,7 +31,7 @@ class User extends AdminModel{
             header("location: signupAdmin.php?error=PleaseInputALL");
             exit();
         }
-        $this->insert_admin($this->fname, $this->address, $this->position,$this->username,$this->pass, $this->avatar);
+        $this->insert_admin($this->fname, $this->address, $this->position,$this->username,$this->pass);
 
 
     }

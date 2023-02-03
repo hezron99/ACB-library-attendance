@@ -10,13 +10,7 @@
         $rpass = $_POST['rpass'];
 
 
-        $orig_file= $_FILES['avatar']['tmp_name'];
-        $ext = pathinfo($_FILES['avatar']['name'], PATHINFO_EXTENSION);
-        $target_dir = '.uploads/';
-        $destination  = "$target_dir$pass.$ext";
-        move_uploaded_file($orig_file,$destination);
-
-        exit();
+       
     
 
    
@@ -27,7 +21,7 @@
         require_once '../class/adminModel.php';
         require_once '../class/controller.php';
 
-        $new = new User($fname,$address,$position,$username,$pass,$rpass,$destination);
+        $new = new User($fname,$address,$position,$username,$pass,$rpass);
         $new->datacontroller();
        
     

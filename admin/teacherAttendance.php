@@ -5,7 +5,7 @@ require_once '/xampp/htdocs/library-attendance/view/authentication.php';
 ?>
 
 
-<nav class="navbar navbar-bg-light" style="background-color: skyblue; height:300px">  
+<nav class="navbar navbar-bg-light" style=" height:300px">  
     <div class="navbar-header ">
         <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position:relative; bottom:120px;left:20px">
             <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@ require_once '/xampp/htdocs/library-attendance/view/authentication.php';
                 
                 
                 <div class="list-group">
-                    <a href="../admin/index.php" class="list-group-item list-group-item-action list-group-item-info">
+                    <a href="../admin/dashboard.php" class="list-group-item list-group-item-action list-group-item-info">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-3">Dashboard</h5> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">

@@ -15,7 +15,7 @@ class UserController extends UserModel{
         
         if($this->empty_Users() == false){
             
-           header("Location:../login.php?error=INVALID_YOUMUSTFILLUPALL");
+           header("Location:../index.php?error=INVALID_YOUMUSTFILLUPALL");
            exit();
         
         }

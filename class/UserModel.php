@@ -7,12 +7,12 @@ class UserModel extends Db{
         $stmt = $this->connect()->prepare("SELECT * FROM student_info WHERE USN = ?");
         if (!$stmt->execute(array($usn))) {
            $stmt = null;
-            header("Location:../login.php?error=STMTFAILED");
+            header("Location:../index.php?error=STMTFAILED");
             exit();
         }
         if ($stmt->rowCount() == 0) {
             $stmt = null;
-            header("Location:../login.php?error=USER_NOT_FOUND");
+            header("Location:../index.php?error=USER_NOT_FOUND");
             exit();
         }
         $user = $stmt->fetchALL(PDO::FETCH_ASSOC);

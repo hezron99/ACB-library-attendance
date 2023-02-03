@@ -78,8 +78,8 @@ class AdminModel extends Db {
                 $stmt->execute();
                 return $stmt;
             }
-            public function insert_admin($fname, $address, $position,$username,$pass,$avatar){
-                $stmt ="INSERT INTO authorized (fullname, address_at, position , user_name, user_pass, picture) VALUES (:fullname, :address_at, :position, :user_name, :user_pass, :picture)";
+            public function insert_admin($fname, $address, $position,$username,$pass){
+                $stmt ="INSERT INTO authorized (fullname, address_at, position , user_name, user_pass) VALUES (:fullname, :address_at, :position, :user_name, :user_pass)";
         
                 $password = password_hash($pass, PASSWORD_DEFAULT);
         
@@ -91,7 +91,7 @@ class AdminModel extends Db {
                 $query->bindParam(':user_name',$username);
                 $query->bindParam(':user_pass',$password);
                 //$query->bindParam(':rpass',$repass,PDO::PARAM_STR);
-                $query->bindParam(':picture',$avatar);
+                
                 $query->execute();
                 
                 $stmt = null;

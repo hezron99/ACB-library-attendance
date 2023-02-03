@@ -2,7 +2,7 @@
  $title = "SignUp Admin";
     
  require_once '/xampp/htdocs/library-attendance/view/header.php';
-require_once '/xampp/htdocs/library-attendance/view/authentication.php';
+//require_once '/xampp/htdocs/library-attendance/view/authentication.php';
 
 ?>
 

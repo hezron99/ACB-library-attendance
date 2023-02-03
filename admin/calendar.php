@@ -5,7 +5,7 @@ require_once '/xampp/htdocs/crud_oop/view/authentication.php';
 ?>
 
 
-<nav class="navbar navbar-bg-light" style="background-color: skyblue; height:300px">  
+<nav class="navbar navbar-bg-light" style=" height:300px">  
     <div class="navbar-header ">
         <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position:relative; bottom:120px;left:20px">
             <span class="navbar-toggler-icon"></span>

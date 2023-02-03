@@ -3,8 +3,7 @@
    require_once "../view/header.php";
    require_once '/xampp/htdocs/library-attendance/view/validation.php';
 ?>
-<nav class="navbar" style="background-color: skyblue; height:300px">
-        
+<nav class="navbar nav-main-dashboard" style="height:300px">  
         <div class="navbar-header ">
             <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position:relative; bottom:120px;left:20px">
                 <span class="navbar-toggler-icon"></span>
@@ -12,15 +11,7 @@
             <span class="display-5 " style="font-weight: bolder;color:white;position:relative;bottom:105px;margin-left:30px;">ADMIN</span>
         </div> 
         
-        <figure class="text-center"style="position:relative; right:20px">
-            <blockquote class="blockquote"></blockquote>
-           
-                <p class="text-light" style="font-size:30px">"All hard work brings a profit, but mere talk leads only to poverty."</p>
-            </blockquote>
-            <figcaption class="blockquote-footer">
-            Proverbs 14:23
-            </figcaption>
-        </figure>   
+       
 </nav>    
     <div class="container shadow-lg" style="width: 500px;background-color:azure;position:relative; bottom:100px;border-radius:30px;padding:30px;">
       <h1 class="font-monospace text-center">Login Admin</h1>

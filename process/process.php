@@ -19,6 +19,6 @@
 
         
 
-        header("location: ../login.php?error=done");
+        header("location: ../index.php?error=done");
     }
    

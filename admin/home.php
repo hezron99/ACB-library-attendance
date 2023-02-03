@@ -1,23 +1,15 @@
 <?php
-$title = "Attendance";
-require_once '/xampp/htdocs/library-attendance/view/header.php';
-require_once '/xampp/htdocs/library-attendance/view/authentication.php';
-require_once '/xampp/htdocs/library-attendance/class/adminDatabase.php';
-require_once '/xampp/htdocs/library-attendance/class/UserModel.php';
+    $title = "Attendance";
+    require_once '/xampp/htdocs/library-attendance/view/header.php';
+    //require_once '/xampp/htdocs/library-attendance/view/authentication.php';
+    require_once '/xampp/htdocs/library-attendance/class/adminDatabase.php';
+    require_once '/xampp/htdocs/library-attendance/class/UserModel.php';
 
-
-
-
-$r = $object->getAllLoginDetails();
-   
-  
-  
+    $r = $object->getAllLoginDetails();
 
 ?>
-
-
-<nav class="navbar navbar-bg-light" style="background-color: skyblue; height:300px">  
-    <div class="navbar-header ">
+<nav class="navbar nav-main-dashboard navbar-bg-light" style="height:300px">
+    <div class="navbar-header">
         <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" style="position:relative; bottom:120px;left:20px">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,9 +24,6 @@ $r = $object->getAllLoginDetails();
         </figcaption>
     </figure>   
     <div class="row align-items-start mx-4">
-        <div class="col">
-            
-        </div>
         <div class="col">          
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16" style="position:relative; bottom:110px;right:20px">
                 <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
@@ -89,10 +78,11 @@ $r = $object->getAllLoginDetails();
                              <span style="font-size:large; font-weight:bold; margin-left:30px;position:relative; bottom:5px;">hi, Welcome</span>
                              <?php
                                 }
-                             ?>                            <br>
+                             ?>  
+                            <br>
                             <br>
                             <div class="d-flex w-100 justify-content-between">
-                                <a href="../admin/index.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0"  style="border-radius:10px;">
+                                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0"  style="border-radius:10px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Zm0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                                         <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
@@ -139,9 +129,7 @@ $r = $object->getAllLoginDetails();
                     </div>       
       </div>
 </nav>
-
-<br />
-
+<br/>
 </div>
 <div class="container text-center " style="position: relative; bottom:80px;">
   <div aria-label="Page navigation example">

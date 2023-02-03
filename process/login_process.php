@@ -17,7 +17,7 @@ $loginAdmin = new AdminControl($user, $pass);
 
 $loginAdmin->EmptyUser();
 
-header("Location:../admin/index.php");
+header("Location:../admin/dashboard.php");
 exit();
 
 }

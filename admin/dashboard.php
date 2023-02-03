@@ -1,12 +1,8 @@
 <?php
     $title = "Home Admin";
-    
     require_once '/xampp/htdocs/library-attendance/view/header.php';
-    require_once '/xampp/htdocs/library-attendance/view/authentication.php';
     require_once "/xampp/htdocs/library-attendance/class/model.php";
     require_once "/xampp/htdocs/library-attendance/config/database.php";
-    
-
     require_once "../class/model.php";
     require_once "../class/adminDatabase.php";
     require_once "../class/adminModel.php";
@@ -14,43 +10,36 @@
    
     if(isset($_POST['submitSearch'])){
         $key = $_POST['key'];
-
-        $rowdata = $obj->search($key);
-        
+        $rowdata = $obj->search($key); 
         $output = $rowdata->fetchALL();
         $row = $rowdata->rowCount();
     }
 
+        $per_page = 15;
+        $page = 1;
 
-    $per_page = 15;
-    $page = 1;
-    if(isset($_GET['page'])){
-      $page = (int)$_GET['page'];
-    
-    }else{
-      $page = 1;
-    }
-    
-    $start = ($page - 1) * $per_page;
-    if (isset($_POST['display'])) {
-    
-    }
+        if(isset($_GET['page'])){
+            $page = (int)$_GET['page'];
+        
+        }else{
+            $page = 1;
+        } 
+
+        $start = ($page - 1) * $per_page;
+        
+        if (isset($_POST['display'])) {
+        
+        }
     $query = $obj->pagination($start,$per_page);
-    
-    
     ?>
-
-    
-<?php
-// students attendance count 
+    <?php
+    // students attendance count 
     $numLogins = $object->recordLoginCount();
     $count = $numLogins->rowCount();
-
-?> 
-<div class="container-fluid" style="background-color: skyblue; height:300px;">
-                    <nav class="navbar">   
-                        <div class="container-fluid">
-                            <button class="navbar-toggler mt-3" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+    ?>
+                    <nav class="navbar nav-main-dashboard">   
+                        <div class="container-fluid container-main-dashboard">
+                            <button class="navbar-toggler" type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
                             <div class="">
@@ -89,7 +78,6 @@
                                                     <li><a class="dropdown-item" href="../admin/logout_admin.php">Log out</a></li>
                                                 </ul>
                                         </div>
-                                    
                                         <div class="list-group">
                                             <?php  
                                             if(isset($_SESSION['user']))
@@ -108,7 +96,7 @@
                                                 <br>
                                                 <br>
                                             <div class="d-flex w-100 justify-content-between">
-                                                <a href="../admin/index.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0 "  style="border-radius:10px;">
+                                                <a href="../admin/dashboard.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0 "  style="border-radius:10px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-dash float-start" viewBox="0 0 16 16">
                                                         <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7ZM11 12h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1 0-1Zm0-7a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/>
                                                         <path d="M8.256 14a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Z"/>
@@ -154,9 +142,6 @@
                             </div>
                         </div> 
                     </nav>
-                </div>
-                <div id="success-message"></div>
-
     <div class="container">
         <div class="container mx-auto text-center"style="position:relative; bottom:50px;">
             <div class="row mx-5">
@@ -291,25 +276,25 @@
                                 $total_pages = ceil($countRow / $per_page);
                                 ?>
                                 <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item <?php if ($page == 1) echo 'disabled'; ?>">
-                                    <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    </li>
-                                    <?php for($i = 1; $i<=$total_pages; $i++): ?>
-                                    <li class="page-item <?php if ($i == $page) echo 'active'; ?>">
-                                        <a class="page-link" href="?page=<?php echo  $i;?>"><?php echo $i; ?></a>
-                                    </li>
-                                    <?php endfor;?>
-                                    <li class="page-item <?php if ($page == $total_pages) echo 'active'; ?>">
-                                    <a class="page-link" href="?page=<?php echo $page + 1;?>" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                    </li>
-                                </ul>
+                                    <ul class="pagination">
+                                        <li class="page-item <?php if ($page == 1) echo 'disabled'; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        </li>
+                                        <?php for($i = 1; $i<=$total_pages; $i++): ?>
+                                        <li class="page-item <?php if ($i == $page) echo 'active'; ?>">
+                                            <a class="page-link" href="?page=<?php echo  $i;?>"><?php echo $i; ?></a>
+                                        </li>
+                                        <?php endfor;?>
+                                        <li class="page-item <?php if ($page == $total_pages) echo 'active'; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                        </li>
+                                    </ul>
                                 </nav>
                                 	
                 </div>
@@ -317,7 +302,6 @@
         </div>
     </div>
 </div>
-
 <br/>
 
 <!-- Insert Modal -->
@@ -512,8 +496,6 @@
             </div>
 <!-- button add user and table data -->
             </div>
-            
-            
             <br>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>            
  <script>
@@ -651,7 +633,7 @@
     $("#updateModal").modal('hide');
 }
 
-//
+
  </script>
  <?php 
    require_once "../view/footer.php";
