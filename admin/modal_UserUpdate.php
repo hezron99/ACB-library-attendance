@@ -14,8 +14,6 @@ if (isset($_POST['updateid'])) {
     $result1 = $obj->getDetails($updateid);
     
 
-    
-
     if ($result1) {
         // Return the user data as a JSON string
         $response = array();

@@ -16,7 +16,7 @@
 
         $obj2  = new UserController($usn,$purpose,$others);
         $obj2->EmptyUserLogin();
-
+        $obj2->EmptyFacultyLogin();
         
 
         header("location: ../index.php?error=done");

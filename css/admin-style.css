@@ -7,3 +7,9 @@
 .container-main-dashboard {
     margin-bottom: 120px;
 }
+@media screen and (max-width: 992px) {
+    .column-grid1{
+        margin-left: 100px;
+    }
+    
+}

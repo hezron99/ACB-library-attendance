@@ -24,6 +24,16 @@ class UserController extends UserModel{
        //$this->recordLogin();
 
         }
+    public function EmptyFacultyLogin(){
+        if($this->empty_Users() == false){
+            
+            header("Location:../index.php?error=INVALID_YOUMUSTFILLUPALL");
+            exit();
+         
+         }
+         $this->get_faculty_attendee($this->usn,$this->option,$this->others);
+
+    }
     // creating empty user input
     private function empty_Users(){
        

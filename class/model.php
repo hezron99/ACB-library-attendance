@@ -41,8 +41,6 @@ class Attendance {
         $query->execute();
         return $query->fetch(PDO::FETCH_ASSOC);
 
-        
-
     }
     
     public function getAll(){

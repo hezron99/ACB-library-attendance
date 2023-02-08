@@ -1,15 +1,13 @@
-<?php
-$title = "Admin Attendance";
-require_once '/xampp/htdocs/library-attendance/view/header.php';
-//require_once '/xampp/htdocs/library-attendance/view/authentication.php';
-require_once '/xampp/htdocs/library-attendance/class/adminDatabase.php';
-require_once '/xampp/htdocs/library-attendance/class/adminModel.php';
-$date = date('d');
-$r = $admin->getAdminAttendees();
+<?php 
+$title = "Faculty";
+require_once "../view/header.php";
+require_once "../class/adminDatabase.php";
+require_once "../class/adminModel.php";
+require_once "../class/UserModel.php";
 
+$result = $object->getFaculty();
 
 ?>
-
 
 <nav class="navbar nav-main-dashboard">   
         <div class="container-fluid container-main-dashboard">
@@ -80,13 +78,13 @@ $r = $admin->getAdminAttendees();
                             <br>
                             <div class="d-flex w-100 justify-content-between">
                                 <a href="home.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0" style="border-radius:10px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
-                                    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
-                                    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
-                                </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-clipboard-data-fill" viewBox="0 0 16 16">
+                                        <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+                                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1ZM10 8a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V8Zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1Zm4-3a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z"/>
+                                    </svg>
                                     <span class="font-monospace fw-lighter" style="font-weight:500;font-size:15px">AttendanceMonitoring</span> 
                                 </a>
-                            </div>     
+                            </div>      
                             <br>
                             <br>
                             <div class="d-flex w-100 justify-content-between">
@@ -100,77 +98,73 @@ $r = $admin->getAdminAttendees();
                             <br>
                             <br>
                             <div class="d-flex w-100 justify-content-between">
-                                <a href="faculty_members.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0" style="border-radius:10px;">
+                                <a href="admin_team.php" class="list-group-item list-group-item-action list-group-item-subtle shadow-lg border-0" style="border-radius:10px;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-people-fill float-start " viewBox="0 0 16 16">
                                         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
                                     </svg> 
                                     <span class="font-monospace fw-lighter" style="font-weight:500;font-size:15px">Faculty Team</span>
                                 </a> 
-                            </div>       
+                            </div>
                         </div>   
                     </div>     
                 </div>
             </div>
         </div> 
-    </nav>
+</nav>
+<div class="container" style="position:relative;bottom:50px;">
 
+<div class="card  shadow-lg">
+<?php
+                $Url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
-<br />
+                    if(strpos($Url,"error=DONE")==true){
+                        echo "<div class='alert alert-success text-center fs-5' role='alert'>
+                            <strong>Successfully Registered! </strong>
+                        
+                            </div>";
+                    }elseif(strpos($Url,"error=PasswordDontMatch")==true){
+                        
+                        echo "<div class='alert alert-danger text-center fs-5' role='alert'>
+                            <strong>The Password you entered is not Match! </strong>
+                            </div>";
+                    }
+            ?>
 
-</div>
-<div class="container text-center " style="position: relative; bottom:80px;">
-  <div aria-label="Page navigation example">
-    <ul class="pagination ">
-        <li class="page-item " >
-                <a class="btn btn-subtle text-light shadow fw-semibold font-monospace p-4" style="border-bottom-left-radius: 50px;border-top-right-radius: 50px" href="home.php">       
-                    Student Attendance
-                </a>
-        </li>
-        <li class="page-item ms-3">
-                <a class="btn btn-subtle text-light shadow fw-semibold font-monospace p-4 " style="border-bottom-left-radius: 50px;border-top-right-radius: 50px;" href="teacherAttendance.php">
-                    Teacher Attendance
-                </a>
-        </li>
-        <li class="page-item ms-3 active-light ">
-                <a class="page-link text-dark shadow fw-semibold font-monospace p-4" style="border-bottom-left-radius: 50px;border-top-right-radius: 50px;" href="adminAttendance.php">
-                Admin Attendance
-                </a>
-        </li>
-    </ul>
-    <div class="card text-center shadow-lg py-5 px-5">
       <div class="card-body">
-            <div class="well-sm ">
-                <div class="btn-group mb-4">	
-                    <form action="exportdata.php" method="POST" style="margin-right: 1000px;padding:10px;">					
-                        <button  type="submit" id="export_data" name='export_data' value="Export to excel" class="btn btn-info shadow-sm">Download</button>
-                    </form>
-                </div>
-            </div>	
+      <button class="btn btn-primary" id="button-faculty" onclick="faculty()">Signup Faculty</button>
         
-        <table class="table bg-body rounded border border-0">
+        <table class="table   bg-body rounded border border-0">
         <caption>List of users</caption>
         <thead>
           <tr>
             <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Full Name</th>
-            <th scope="col">Positon</th>
-            <th scope="col">Time IN</th>
+            <th scope="col">Address</th>
+            <th scope="col">Department</th>
+            <th scope="col">Delete Faculty</th>
           </tr>
         </thead>
         <tbody>
             <?php
-            $number =1;
-            while($data = $r->fetch(PDO::FETCH_ASSOC)){ ?>
+            $number = 1;
+            while($row = $result->fetch(PDO::FETCH_ASSOC)){ ?>
+                <?php $row['faculty_id'];?>
                 <tr>
-                    <td class="py-3 px-3"><?php echo $number; ?></td>
-                    <td><?php echo $data['fullname'] ?></td>
-                    <td><?php echo $data['position'] ?></td>
-                    <td><?php echo $data['admin_time_in']?></td>
-                </tr>    
-            <?php $number++; 
-            
-            }
-            ?>
+                    <td><?php echo $number;?></td>
+                    <td><?php echo $row['faculty_usn'];?></td>
+                    <td><?php echo $row['faculty_fullname'];?></td>
+                    <td><?php echo $row['faculty_email'];?></td>
+                    <td><?php echo $row['department'];?></td>
+                    <td>
+                        <a  onclick=" return confirm('Are you sure you want to delete this Faculty?')" href="delete_faculty.php?faculty_delete=<?php echo $row['faculty_id'];?>" class="btn btn-danger">Delete Faculty</a>
+                    </td>
+                </tr>
+
+            <?php
+
+             $number++;}
+        ?>  
         </tbody>
       </table>
       <nav aria-label="Page navigation example">
@@ -189,48 +183,53 @@ $r = $admin->getAdminAttendees();
     </div>
   </div>
 </div>
-
-
-
-
-<!---
-  <div class="row">
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-        
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+</div>
+<div class="modal fade" id="modal-faculty" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Registered New Faculty Member</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-        
-        </div>
-    </div>
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-    
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+            <div class="modal-body">
+                <form method="POST" action="facultyProcess.php" class="py-4 px-4">
+                    <div class="form-control-lg mb-3">
+                        <input type="number" name="id_faculty" id="id_faculty" class="form-control form-control-lg" placeholder="Enter Faculty ID" require>
+                        <label for="id_faculty" class="form-label">ID</label>
+                    </div>
+
+                    <div class="form-control-lg mb-3">
+                        <input type="text" name="faculty_fn" id="faculty" class="form-control form-control-lg" placeholder="Enter Full Name"/>
+                        <label for="faculty" class="form-label">Full Name</label>
+                    </div>
+                    <div class="form-control-lg mb-3">
+                        <input type="email" name="faculty_Ad" id="faculty" class="form-control form-control-lg"placeholder="Enter Address" require >
+                        <label for="faculty" class="form-label">Email Address</label>
+                    </div>
+                    <div class="form-control-lg mb-3">
+                        <select class="form-control form-control-lg" name="department" id="department">
+                            <option disabled selected>Select Department</option>
+                            <option value="IT Department">IT Department</option>
+                            <option value="BA Department">BA Department</option>
+                            <option value="Gen Ed Department">Gen Ed Department</option>
+                            <option valu="Tesda Department">Tesda Department</option>
+                        </select>
+                        <button class="btn btn-primary mt-5" type="submit" name="create">Submit</button>
+                    </div>
+                </form>
             </div>
-        
         </div>
-    </div>
-    <div class="col">
-        <div class="card" style="width: 18rem;">
-  
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-  
-        </div>
-        <br />
     </div>
 </div>
---->
+
+<script>
+    function faculty(){
+        $(document).ready(function(){
+            $('#modal-faculty').modal('show');
+        })
+    }
+</script>
 <?php 
-   require_once "../view/footer.php";
- ?>
+    require_once '../view/footer.php';
+
+?>

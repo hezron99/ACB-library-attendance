@@ -31,17 +31,7 @@
     
 }
 
-.container-form {
-    background-color:azure;
-    position:relative; 
-    bottom:100px;
-    text-align: center;
-    display: block;
-    display: inline-block;
-    margin-left: 36%;
-    width: 400px;
 
-}
 .button-ad{
     width: 150px;
     
@@ -79,5 +69,23 @@
         display: none;
     }
     
+}
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+width: 80%;
+}
+
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+
 }
 

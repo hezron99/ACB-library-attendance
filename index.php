@@ -13,7 +13,7 @@
     <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel ="stylesheet" type="text/css" href="css/style.css">
+    <link rel ="stylesheet" type="text/css" href="./css/style.css">
 
     <link rel="icon" type="image/x-icon" href="favicon.ico">
   
@@ -33,7 +33,7 @@
    
       
 
-
+<!---
     <div class="container-main">
       <nav class="navbar-main" style="background-image:url('image/abb9829acd4c19247de4fbcb2cf52adb.jpg'); background-repeat: no-repeat;
    background-size: 100% 100%; height:300px;
@@ -45,9 +45,9 @@
             </button> 
       </nav>
       
-          <div class="container-form rounded-5 shadow-lg">
+          <div class="container-form mx-auto">
               <form class="text-center py-5 px-3" method="POST" action="../library-attendance/process/process.php">
-              <!-- Name input -->
+              
                     <div class="form-outline mb-4 ">
                       <input type="number" id="integer" name="usn" class="form-control form-control-lg  rounded-5" placeholder="Enter your USN" required>
                       <label class="form-label" for="form5Example1" >USN</label>
@@ -79,9 +79,25 @@
                       </label>
                     </div>
 
-                <!-- Submit button -->
                 <button type="submit" name="submit" class="btn btn-primary btn-block mb-3" >Log in</button> 
-                <?php
+                
+              </form>
+            
+          </div>
+    </div>
+             -->
+<div class="container"> 
+  <h1 class="display-4">Library Attendance</h1>
+  <section class="vh-100 mt-5">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100 shadow-lg py-5 rounded-5">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="image/draw2.webp"
+            class="img-fluid" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+          <form method="POST" action="../library-attendance/process/process.php">
+          <?php
                 $fullUrl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
                 if(strpos($fullUrl,"error=INVALID_YOUMUSTFILLUPALL")==true){
 
@@ -98,11 +114,44 @@
                         </div>";
                 }
               ?>
-              </form>
-            
-          </div>
-    </div>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+            <input type="number" id="integer" name="usn" class="form-control form-control-lg  rounded-5" placeholder="Enter your USN" required>
         
+            </div>
+            <div class="form-outline mb-4">
+              <select class="form-select form-select-lg mb-3 rounded-5" name="purpose" aria-label=".form-select-lg example">
+                    <option disabled selected>Select Your Purpose</option>
+                    <option  value="Study">Study</option>
+                    <option value="Reading a Books">Reading a Books</option>
+                    <option value="Stanby">Stanby</option>
+                    <option value="Others">Others</option>  
+                </select>
+            </div>
+            <div class="form-group">
+                        <button class="btn btn-outline-primary btn-block mb-4" type="button" id="warning-outlined" autocomplete="off" data-bs-toggle="collapse" href="#collapseExample">If you choose others, Please Click Here to know your Purpose</button>
+            </div>
+            <!-- Password input -->
+            <div class="collapse" id="collapseExample">
+                        <div class="form-outlined">
+                          <textarea class="form-control-lg" name="others" id="textAreaExample" rows="3" placeholder="Enter Your Purpose here..."></textarea>
+                        </div>
+            </div>
+
+            
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="sumbit" name="submit" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Time In</button>
+           
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>       
 
   </body>
 </html>

@@ -19,5 +19,5 @@ try {
 require_once '/xampp/htdocs/library-attendance/class/model.php';
 $obj = new Attendance($conn);
 
-
+?>
 

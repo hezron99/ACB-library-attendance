@@ -1,4 +1,4 @@
--<?php
+<?php
 class AdminModel extends Db {
        // lOGIN authenticating users or login password validation in ADMIN
     protected function get_users($name,$pass){
@@ -61,7 +61,7 @@ class AdminModel extends Db {
             public function getAdminAttendees(){
                
                 $sql = "SELECT authorized.fullname,authorized.position,authorized.user_name, admin_attendance.admin_time_in FROM authorized 
-                INNER JOIN admin_attendance ON authorized.id_admin = admin_attendance.id_admin WHERE admin_attendance.admin_time_in > NOW() - INTERVAL 24 HOUR ORDER by admin_attendance.admin_time_in DESC";
+                INNER JOIN admin_attendance ON authorized.id_admin = admin_attendance.id_admin WHERE admin_attendance.admin_time_in > NOW() - INTERVAL 7 DAY ORDER by admin_attendance.admin_time_in DESC";
                 $stmt = $this->connect()->prepare($sql);
                 $stmt->execute();
                 return $stmt;
@@ -90,7 +90,7 @@ class AdminModel extends Db {
                 $query->bindParam(':position',$position);
                 $query->bindParam(':user_name',$username);
                 $query->bindParam(':user_pass',$password);
-                //$query->bindParam(':rpass',$repass,PDO::PARAM_STR);
+        ;
                 
                 $query->execute();
                 
@@ -109,7 +109,6 @@ class AdminModel extends Db {
                 $query->bindParam(':position',$position);
                 $query->bindParam(':user_name',$username);
                 $query->bindParam(':user_pass',$password);
-                //
                 $query->bindParam(':picture',$avatar);
                 $query->bindParam(':id_admin',$id,PDO::PARAM_INT);
                 $query->execute();

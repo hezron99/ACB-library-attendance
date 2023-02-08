@@ -22,13 +22,13 @@ class User extends AdminModel{
     public function datacontroller(){
 
         if($this->pwdMatch() == false){
-            header("location: signupAdmin.php?error=PasswordDontMatch");
+            header("location: ../admin/admin_team.php?error=PasswordDontMatch");
             exit();
         
         }
 
         if($this->empty_input() == false){
-            header("location: signupAdmin.php?error=PleaseInputALL");
+            header("location: ../admin/admin_team.php?error=PleaseInputALL");
             exit();
         }
         $this->insert_admin($this->fname, $this->address, $this->position,$this->username,$this->pass);
